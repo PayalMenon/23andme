@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">instagram</string>
+    <string name="posts">%d posts</string>
+    <string name="followers">%d followers</string>
+    <string name="following">%d following</string>
+    <string name="search_text">Search for a stream</string>
+    <string name="fetch_accessToken_failed">Failed to fetch access token</string>
+    <string name="fetch_selfInfo_failed">Failed to fetch self information</string>
+    <string name="fetch_likedList_failed">Failed to fetch Liked list</string>
+    <string name="fetch_recent_failed">Failed to fetch recent post list</string>
+    <string name="fetch_search_list_failed">Failed to fetch searched stream list</string>
+    <string name="failed_like">Failed to like the picture</string>
+    <string name="failed_unlike">Failed to unlike the picture</string>
+</resources>
