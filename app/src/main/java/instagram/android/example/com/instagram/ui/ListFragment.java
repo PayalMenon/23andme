@@ -31,12 +31,12 @@ public class ListFragment extends Fragment implements UserProfileActivity.Fragme
 
     @Inject
     InstagramService service;
+    InstagramSettings preference;
 
     private RecyclerView listView;
     private ListAdapter listAdapter;
     private RecyclerView.LayoutManager manager;
     private List<ListObject> imageList = new ArrayList<>();
-    private InstagramSettings preference;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +47,6 @@ public class ListFragment extends Fragment implements UserProfileActivity.Fragme
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        preference = InstagramSettings.getInstance();
         setRetainInstance(true);
     }
 
@@ -58,7 +57,7 @@ public class ListFragment extends Fragment implements UserProfileActivity.Fragme
         ((Application) getActivity().getApplication()).getNetworkComponent().inject(this);
 
         listView = (RecyclerView) getActivity().findViewById(R.id.list_view);
-        listAdapter = new ListAdapter(getActivity(), imageList, service);
+        listAdapter = new ListAdapter(getActivity(), imageList, service, preference);
         manager = new GridLayoutManager(getActivity(), 2);
 
         listView.setAdapter(listAdapter);
@@ -70,7 +69,6 @@ public class ListFragment extends Fragment implements UserProfileActivity.Fragme
     }
 
     private void fetchSelfRecentMedia() {
-        preference = InstagramSettings.getInstance();
 
         Call<SelfData> call = service.getSelfMedia(preference.getString(InstagramSettings.ACCESS_TOKEN, null));
         call.enqueue(new Callback<SelfData>() {

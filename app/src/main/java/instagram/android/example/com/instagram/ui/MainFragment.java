@@ -45,6 +45,7 @@ public class MainFragment extends Fragment {
 
     @Inject
     InstagramService service;
+    InstagramSettings settings;
 
     private String responseCode;
     private WebView view;
@@ -75,7 +76,6 @@ public class MainFragment extends Fragment {
                 if (response.isSuccessful()) {
                     AccessToken accessResponse = response.body();
 
-                    InstagramSettings settings = InstagramSettings.getInstance();
                     settings.setString(InstagramSettings.ACCESS_TOKEN, accessResponse.getAccessToken());
 
                     Call<Data> user = service.getSelfInformation(accessResponse.getAccessToken());
@@ -86,7 +86,6 @@ public class MainFragment extends Fragment {
 
                                 Data data = response.body();
                                 User user = data.getData();
-                                InstagramSettings settings = InstagramSettings.getInstance();
                                 settings.setString(InstagramSettings.FULL_NAME, user.getFull_name());
                                 settings.setString(InstagramSettings.USER_NAME, user.getUsername());
                                 settings.setString(InstagramSettings.PROFILE_PIC, user.getProfile_picture());

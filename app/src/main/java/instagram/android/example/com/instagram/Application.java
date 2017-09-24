@@ -6,6 +6,7 @@ import instagram.android.example.com.instagram.dragger.component.DaggerNetworkCo
 import instagram.android.example.com.instagram.dragger.component.NetworkComponent;
 import instagram.android.example.com.instagram.dragger.module.ApplicationModule;
 import instagram.android.example.com.instagram.dragger.module.NetworkModule;
+import instagram.android.example.com.instagram.dragger.module.SettingsModule;
 
 public class Application extends android.app.Application{
 
@@ -19,6 +20,7 @@ public class Application extends android.app.Application{
         networkComponent = DaggerNetworkComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .networkModule(new NetworkModule("https://api.instagram.com"))
+                .settingsModule(new SettingsModule())
                 .build();
 
         this.context = getApplicationContext();

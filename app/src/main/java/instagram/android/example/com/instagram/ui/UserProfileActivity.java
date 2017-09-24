@@ -20,6 +20,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
+import javax.inject.Inject;
+
 import instagram.android.example.com.instagram.InstagramSettings;
 import instagram.android.example.com.instagram.R;
 
@@ -27,7 +29,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private static final String LIST_FRAGMENT = "list_fragment";
 
-    private InstagramSettings preference;
+    @Inject
+    InstagramSettings preference;
+
     private FragmentListener fragmentListener;
 
     @Override
@@ -39,8 +43,6 @@ public class UserProfileActivity extends AppCompatActivity {
         Toolbar actionBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(actionBar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        preference = InstagramSettings.getInstance();
 
         populateUserInformation();
         addListFragment();
@@ -137,7 +139,6 @@ public class UserProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_logout) {
-            InstagramSettings preference = InstagramSettings.getInstance();
             preference.clearAll();
 
             CookieManager cookieManager = CookieManager.getInstance();

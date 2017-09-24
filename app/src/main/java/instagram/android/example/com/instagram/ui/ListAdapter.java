@@ -29,11 +29,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder
     private Context context;
     private InstagramSettings preference;
 
-    public ListAdapter(Context context, List<ListFragment.ListObject> imageList, InstagramService service) {
+    public ListAdapter(Context context, List<ListFragment.ListObject> imageList, InstagramService service, InstagramSettings preference) {
         this.context = context;
         this.imageList = imageList;
         this.service = service;
-        preference = InstagramSettings.getInstance();
+        this.preference = preference;
     }
 
     @Override
